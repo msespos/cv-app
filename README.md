@@ -1,3 +1,9 @@
+# CV App
+
+This app allows the user to create a CV. It was created as part of following the Odin Project.
+
+Standard create-react-app README content follows.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
