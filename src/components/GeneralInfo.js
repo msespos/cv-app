@@ -59,6 +59,7 @@ class GeneralInfo extends Component {
               placeholder="First"
               value={this.state.firstName}
               onChange={this.handleFirstNameChange}
+              required
             />
             <input
               id="lastName"
@@ -66,6 +67,7 @@ class GeneralInfo extends Component {
               placeholder="Last"
               value={this.state.lastName}
               onChange={this.handleLastNameChange}
+              required
             />
             <input
               id="email"
@@ -73,6 +75,7 @@ class GeneralInfo extends Component {
               placeholder="Email"
               value={this.state.email}
               onChange={this.handleEmailChange}
+              required
             />
             <button type="submit">Submit Info</button>
         </form>

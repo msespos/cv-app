@@ -93,6 +93,7 @@ class Experience extends Component {
               placeholder="Position"
               value={this.state.position}
               onChange={this.handlePositionChange}
+              required
             />
             <input
               id="employer"
@@ -100,6 +101,7 @@ class Experience extends Component {
               placeholder="Employer"
               value={this.state.employer}
               onChange={this.handleEmployerChange}
+              required
             />
             <input
               id="dates"
@@ -107,6 +109,7 @@ class Experience extends Component {
               placeholder="Dates"
               value={this.state.dates}
               onChange={this.handleDatesChange}
+              required
             />
             <input
               id="duties"
@@ -114,6 +117,7 @@ class Experience extends Component {
               placeholder="Duties"
               value={this.state.duties}
               onChange={this.handleDutiesChange}
+              required
             />
             <button type="submit">Submit Experience</button>
           </form>

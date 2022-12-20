@@ -83,6 +83,7 @@ class Education extends Component {
               placeholder="School"
               value={this.state.school}
               onChange={this.handleSchoolChange}
+              required
             />
             <input
               id="major"
@@ -90,6 +91,7 @@ class Education extends Component {
               placeholder="Major"
               value={this.state.major}
               onChange={this.handleMajorChange}
+              required
             />
             <input
               id="degree"
@@ -97,6 +99,7 @@ class Education extends Component {
               placeholder="degree"
               value={this.state.degree}
               onChange={this.handleDegreeChange}
+              required
             />
             <button type="submit">Submit Education</button>
           </form>
