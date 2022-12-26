@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class DisplayedExperience extends Component {
   render() {
     return (
