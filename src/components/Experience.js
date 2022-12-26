@@ -53,7 +53,6 @@ class Experience extends Component {
         exp
       });
     }
-    console.log(exp)
   }
 
   addExperience(e) {
