@@ -155,7 +155,7 @@ class Experience extends Component {
                 onChange={this.handleDutiesChange}
                 required
               />
-              <button type="submit">Submit Edits</button>
+              <button type="submit">Submit Edit</button>
             </form>
           </div>
         )
