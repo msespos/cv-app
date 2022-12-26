@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EducationOverview from './EducationOverview';
+import DisplayedEducation from './DisplayedEducation';
 import uniqid from 'uniqid';
 
 class Education extends Component {
@@ -13,38 +13,66 @@ class Education extends Component {
         major: "",
         degree: "",
         id: uniqid(),
+        editDisplayMode: "display",
       },
-      displayMode: "edit",
+      addDisplayMode: "add",
     }
 
-    this.toggleDisplay = this.toggleDisplay.bind(this);
+    this.toggleAddDisplay = this.toggleAddDisplay.bind(this);
+    this.toggleEditDisplay = this.toggleEditDisplay.bind(this);
     this.addEducation = this.addEducation.bind(this);
+    this.editEducation = this.editEducation.bind(this);
     this.handleSchoolChange = this.handleSchoolChange.bind(this);
     this.handleMajorChange = this.handleMajorChange.bind(this);
     this.handleDegreeChange = this.handleDegreeChange.bind(this);
   }
 
-  toggleDisplay() {
-    if (this.state.displayMode === "display") {
+  toggleAddDisplay() {
+    if (this.state.addDisplayMode === "display") {
       this.setState({
-        displayMode: "edit"
+        addDisplayMode: "add"
       })
     } else {
       this.setState({
-        displayMode: "display"
+        addDisplayMode: "display"
       })
+    }
+  }
+
+  toggleEditDisplay(edu) {
+    if (edu.editDisplayMode === "display") {
+      edu.editDisplayMode = "edit";
+      this.setState({
+        edu
+      });
+    } else {
+      edu.editDisplayMode = "display";
+      this.setState({
+        edu
+      });
     }
   }
 
   addEducation(e) {
     e.preventDefault();
     this.setState({
-      education: { id: uniqid() }
+      education: { id: uniqid(), editDisplayMode: "display" },
     })
     this.setState({
       educations: this.state.educations.concat(this.state.education),
     });
-    this.toggleDisplay();
+    this.toggleAddDisplay();
+  }
+
+  editEducation(e, exp) {
+    e.preventDefault();
+    exp.school = this.state.education.school;
+    exp.major = this.state.education.major;
+    exp.degree = this.state.education.degree;
+    this.setState({
+      exp
+    });
+    this.toggleEditDisplay(exp);
   }
 
   handleSchoolChange(e) {
@@ -72,10 +100,52 @@ class Education extends Component {
   }
 
   render() {
-    if (this.state.displayMode === "edit") {
+    const educationList = this.state.educations.map((education) => {
+      if (education.editDisplayMode === "display") {
+        return (
+          <div key={education.id}>
+            <DisplayedEducation education={education} />
+            <button onClick={() => this.toggleEditDisplay(education)}>Edit</button>
+          </div>
+        )
+      } else {
+        return (
+          <div key={education.id}>
+            <form onSubmit={(e) => this.editEducation(e, education)}>
+              <input
+                id="school"
+                type="text"
+                placeholder="School"
+                value={this.state.school}
+                onChange={this.handleSchoolChange}
+                required
+              />
+              <input
+                id="major"
+                type="text"
+                placeholder="Major"
+                value={this.state.major}
+                onChange={this.handleMajorChange}
+                required
+              />
+              <input
+                id="degree"
+                type="text"
+                placeholder="degree"
+                value={this.state.degree}
+                onChange={this.handleDegreeChange}
+                required
+              />
+              <button type="submit">Submit Edit</button>
+            </form>
+          </div>
+        )
+      }
+    })
+    if (this.state.addDisplayMode === "add") {
       return (
         <div>
-          <EducationOverview educations={this.state.educations} />
+          {educationList}
           <form onSubmit={this.addEducation}>
             <input
               id="school"
@@ -108,8 +178,8 @@ class Education extends Component {
     } else {
       return (
         <div>
-          <EducationOverview educations={this.state.educations} />
-          <button onClick={this.toggleDisplay}>Add Education</button>
+          {educationList}
+          <button onClick={this.toggleAddDisplay}>Add Education</button>
         </div>
       )
     }
