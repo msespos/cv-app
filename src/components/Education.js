@@ -7,14 +7,15 @@ class Education extends Component {
     super();
 
     this.state = {
-      educations: [],
-      education: {
-        school: "",
-        major: "",
-        degree: "",
-        id: uniqid(),
-        editDisplayMode: "display",
-      },
+      educations: [
+        {
+          school: "",
+          major: "",
+          degree: "",
+          id: uniqid(),
+          editDisplayMode: "hidden",
+        }
+      ],
       addDisplayMode: "add",
     }
 
@@ -39,69 +40,67 @@ class Education extends Component {
     }
   }
 
-  toggleEditDisplay(edu) {
-    if (edu.editDisplayMode === "display") {
-      edu.editDisplayMode = "edit";
-      this.setState({
-        edu
-      });
+  toggleEditDisplay(education) {
+    if (education.editDisplayMode === "display") {
+      education.editDisplayMode = "edit";
     } else {
-      edu.editDisplayMode = "display";
-      this.setState({
-        edu
-      });
+      education.editDisplayMode = "display";
     }
+    this.setState({
+      educations: this.state.educations
+    });
   }
 
   addEducation(e) {
     e.preventDefault();
+    let newBlank = {
+      school: "",
+      major: "",
+      degree: "",
+      id: uniqid(),
+      editDisplayMode: "hidden",
+    }
+    this.state.educations.slice(-1)[0].editDisplayMode = "display";
     this.setState({
-      education: { id: uniqid(), editDisplayMode: "display" },
-    })
-    this.setState({
-      educations: this.state.educations.concat(this.state.education),
+      educations: this.state.educations.concat(newBlank),
     });
     this.toggleAddDisplay();
   }
 
-  editEducation(e, exp) {
+  editEducation(e, education) {
     e.preventDefault();
-    exp.school = this.state.education.school;
-    exp.major = this.state.education.major;
-    exp.degree = this.state.education.degree;
     this.setState({
-      exp
+      educations: this.state.educations,
     });
-    this.toggleEditDisplay(exp);
+    this.toggleEditDisplay(education);
   }
 
-  handleSchoolChange(e) {
-    let education = {...this.state.education};
+  handleSchoolChange(e, education) {
     education.school = e.target.value;
     this.setState({
-      education
+      educations: this.state.educations
     });
   }
 
-  handleMajorChange(e) {
-    let education = {...this.state.education};
+  handleMajorChange(e, education) {
     education.major = e.target.value;
     this.setState({
-      education
+      educations: this.state.educations
     });
   }
 
-  handleDegreeChange(e) {
-    let education = {...this.state.education};
+  handleDegreeChange(e, education) {
     education.degree = e.target.value;
     this.setState({
-      education
+      educations: this.state.educations
     });
   }
 
   render() {
     const educationList = this.state.educations.map((education) => {
-      if (education.editDisplayMode === "display") {
+      if (education.editDisplayMode === "hidden") {
+        return;
+      } else if (education.editDisplayMode === "display") {
         return (
           <div key={education.id}>
             <DisplayedEducation education={education} />
@@ -116,24 +115,24 @@ class Education extends Component {
                 id="school"
                 type="text"
                 placeholder="School"
-                value={this.state.school}
-                onChange={this.handleSchoolChange}
+                value={education.school}
+                onChange={(e) => this.handleSchoolChange(e, education)}
                 required
               />
               <input
                 id="major"
                 type="text"
                 placeholder="Major"
-                value={this.state.major}
-                onChange={this.handleMajorChange}
+                value={education.major}
+                onChange={(e) => this.handleMajorChange(e, education)}
                 required
               />
               <input
                 id="degree"
                 type="text"
                 placeholder="degree"
-                value={this.state.degree}
-                onChange={this.handleDegreeChange}
+                value={education.degree}
+                onChange={(e) => this.handleDegreeChange(e, education)}
                 required
               />
               <button type="submit">Submit Edit</button>
@@ -152,7 +151,7 @@ class Education extends Component {
               type="text"
               placeholder="School"
               value={this.state.school}
-              onChange={this.handleSchoolChange}
+              onChange={(e) => this.handleSchoolChange(e, this.state.educations.slice(-1)[0])}
               required
             />
             <input
@@ -160,7 +159,7 @@ class Education extends Component {
               type="text"
               placeholder="Major"
               value={this.state.major}
-              onChange={this.handleMajorChange}
+              onChange={(e) => this.handleMajorChange(e, this.state.educations.slice(-1)[0])}
               required
             />
             <input
@@ -168,7 +167,7 @@ class Education extends Component {
               type="text"
               placeholder="degree"
               value={this.state.degree}
-              onChange={this.handleDegreeChange}
+              onChange={(e) => this.handleDegreeChange(e, this.state.educations.slice(-1)[0])}
               required
             />
             <button type="submit">Submit Education</button>
