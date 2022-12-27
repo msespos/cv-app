@@ -7,15 +7,16 @@ class Experience extends Component {
     super();
 
     this.state = {
-      experiences: [],
-      experience: {
-        position: "",
-        employer: "",
-        dates: "",
-        duties: "",
-        id: uniqid(),
-        editDisplayMode: "display",
-      },
+      experiences: [
+        {
+          position: "",
+          employer: "",
+          dates: "",
+          duties: "",
+          id: uniqid(),
+          editDisplayMode: "hidden",
+        }
+      ],
       addDisplayMode: "add",
     }
 
@@ -41,78 +42,75 @@ class Experience extends Component {
     }
   }
 
-  toggleEditDisplay(exp) {
-    if (exp.editDisplayMode === "display") {
-      exp.editDisplayMode = "edit";
-      this.setState({
-        exp
-      });
+  toggleEditDisplay(experience) {
+    if (experience.editDisplayMode === "display") {
+      experience.editDisplayMode = "edit";
     } else {
-      exp.editDisplayMode = "display";
-      this.setState({
-        exp
-      });
+      experience.editDisplayMode = "display"
     }
+    this.setState({
+      experiences: this.state.experiences
+    });
   }
 
   addExperience(e) {
     e.preventDefault();
+    let newBlank = {
+      position: "",
+      employer: "",
+      dates: "",
+      duties: "",
+      id: uniqid(),
+      editDisplayMode: "hidden",
+    }
+    this.state.experiences.slice(-1)[0].editDisplayMode = "display";
     this.setState({
-      experience: { id: uniqid(), editDisplayMode: "display" },
-    })
-    this.setState({
-      experiences: this.state.experiences.concat(this.state.experience),
+      experiences: this.state.experiences.concat(newBlank),
     });
     this.toggleAddDisplay();
   }
 
-  editExperience(e, exp) {
+  editExperience(e, experience) {
     e.preventDefault();
-    exp.position = this.state.experience.position;
-    exp.employer = this.state.experience.employer;
-    exp.dates = this.state.experience.dates;
-    exp.duties = this.state.experience.duties;
     this.setState({
-      exp
+      experiences: this.state.experiences
     });
-    this.toggleEditDisplay(exp);
+    this.toggleEditDisplay(experience);
   }
 
-  handlePositionChange(e) {
-    let experience = {...this.state.experience};
+  handlePositionChange(e, experience) {
     experience.position = e.target.value;
     this.setState({
-      experience
+      experiences: this.state.experiences
     });
   }
 
-  handleEmployerChange(e) {
-    let experience = {...this.state.experience};
+  handleEmployerChange(e, experience) {
     experience.employer = e.target.value;
     this.setState({
-      experience
+      experiences: this.state.experiences
     });
   }
 
-  handleDatesChange(e) {
-    let experience = {...this.state.experience};
+  handleDatesChange(e, experience) {
     experience.dates = e.target.value;
     this.setState({
-      experience
+      experiences: this.state.experiences
     });
   }
 
-  handleDutiesChange(e) {
-    let experience = {...this.state.experience};
+  handleDutiesChange(e, experience) {
     experience.duties = e.target.value;
     this.setState({
-      experience
+      experiences: this.state.experiences
     });
   }
 
   render() {
     const experienceList = this.state.experiences.map((experience) => {
-      if (experience.editDisplayMode === "display") {
+      if (experience.editDisplayMode === "hidden") {
+        return;
+      } else if (experience.editDisplayMode === "display") {
         return (
           <div key={experience.id}>
             <DisplayedExperience experience={experience} />
@@ -127,32 +125,32 @@ class Experience extends Component {
                 id="position"
                 type="text"
                 placeholder="Position"
-                value={this.state.position}
-                onChange={this.handlePositionChange}
+                value={experience.position}
+                onChange={(e) => this.handlePositionChange(e, experience)}
                 required
               />
               <input
                 id="employer"
                 type="text"
                 placeholder="Employer"
-                value={this.state.employer}
-                onChange={this.handleEmployerChange}
+                value={experience.employer}
+                onChange={(e) => this.handleEmployerChange(e, experience)}
                 required
               />
               <input
                 id="dates"
                 type="text"
                 placeholder="Dates"
-                value={this.state.dates}
-                onChange={this.handleDatesChange}
+                value={experience.dates}
+                onChange={(e) => this.handleDatesChange(e, experience)}
                 required
               />
               <input
                 id="duties"
                 type="textarea"
                 placeholder="Duties"
-                value={this.state.duties}
-                onChange={this.handleDutiesChange}
+                value={experience.duties}
+                onChange={(e) => this.handleDutiesChange(e, experience)}
                 required
               />
               <button type="submit">Submit Edit</button>
@@ -171,7 +169,7 @@ class Experience extends Component {
               type="text"
               placeholder="Position"
               value={this.state.position}
-              onChange={this.handlePositionChange}
+              onChange={(e) => this.handlePositionChange(e, this.state.experiences.slice(-1)[0])}
               required
             />
             <input
@@ -179,7 +177,7 @@ class Experience extends Component {
               type="text"
               placeholder="Employer"
               value={this.state.employer}
-              onChange={this.handleEmployerChange}
+              onChange={(e) => this.handleEmployerChange(e, this.state.experiences.slice(-1)[0])}
               required
             />
             <input
@@ -187,7 +185,7 @@ class Experience extends Component {
               type="text"
               placeholder="Dates"
               value={this.state.dates}
-              onChange={this.handleDatesChange}
+              onChange={(e) => this.handleDatesChange(e, this.state.experiences.slice(-1)[0])}
               required
             />
             <input
@@ -195,7 +193,7 @@ class Experience extends Component {
               type="textarea"
               placeholder="Duties"
               value={this.state.duties}
-              onChange={this.handleDutiesChange}
+              onChange={(e) => this.handleDutiesChange(e, this.state.experiences.slice(-1)[0])}
               required
             />
             <button type="submit">Submit Experience</button>
