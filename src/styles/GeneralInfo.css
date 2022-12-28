@@ -1,1 +1,47 @@
-* { color: purple }
+/* --nickel: #706c61ff;
+--dark-purple: #2f0a28ff;
+--blue-violet-crayola: #6969b3ff;
+--columbia-blue: #b9cfd4ff;
+--midnight-blue: #0a014fff; */
+
+* {
+  background-color: rgb(26, 6, 23);
+  color: rgb(143, 138, 122);
+}
+
+.form {
+  border: 5px solid #6969b3ff;
+}
+
+input, button {
+  padding: 20px 10px;
+  line-height: 28px;
+  font-size: 18px;
+  border: 2px solid #b9cfd4ff;
+}
+
+button {
+  background-color: #0a014fff;
+}
+
+.tiny-edit-button {
+  padding: 10px;
+  line-height: 5px;
+}
+
+.title-edit {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.first-name-and-tiny-edit-button {
+  display: flex;
+}
+
+.title-display {
+  font-size: xx-large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
