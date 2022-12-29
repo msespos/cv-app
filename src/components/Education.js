@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DisplayedEducation from './DisplayedEducation';
 import uniqid from 'uniqid';
+import '../styles/Education.css';
 
 class Education extends Component {
   constructor() {
@@ -102,14 +103,14 @@ class Education extends Component {
         return;
       } else if (education.editDisplayMode === "display") {
         return (
-          <div key={education.id}>
+          <div className="education-line-item" key={education.id}>
             <DisplayedEducation education={education} />
-            <button onClick={() => this.toggleEditDisplay(education)}>Edit</button>
+            <button className="education-edit-button" onClick={() => this.toggleEditDisplay(education)}>Edit</button>
           </div>
         )
       } else {
         return (
-          <div key={education.id}>
+          <div className="education-edit" key={education.id}>
             <form onSubmit={(e) => this.editEducation(e, education)}>
               <input
                 id="school"
@@ -145,6 +146,7 @@ class Education extends Component {
       return (
         <div>
           {educationList}
+          <div className="education-add">
           <form onSubmit={this.addEducation}>
             <input
               id="school"
@@ -172,13 +174,16 @@ class Education extends Component {
             />
             <button type="submit">Submit Education</button>
           </form>
+          </div>
         </div>
       )
     } else {
       return (
-        <div>
+        <div className="education-with-add-button">
           {educationList}
-          <button onClick={this.toggleAddDisplay}>Add Education</button>
+          <div>
+            <button className="education-add-button" onClick={this.toggleAddDisplay}>Add Education</button>
+          </div>
         </div>
       )
     }

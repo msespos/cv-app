@@ -1,0 +1,30 @@
+.education-add, .education-edit {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.education-display, .education-line-item {
+  font-size: xx-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.education-display {
+  flex-direction: column;
+}
+
+.education-edit-button, .education-add-button {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  margin: 10px 30px;
+}
+
+.education-with-add-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
