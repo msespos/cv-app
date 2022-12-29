@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DisplayedExperience from './DisplayedExperience';
 import uniqid from 'uniqid';
+import '../styles/Experience.css';
 
 class Experience extends Component {
   constructor() {
@@ -112,14 +113,14 @@ class Experience extends Component {
         return;
       } else if (experience.editDisplayMode === "display") {
         return (
-          <div key={experience.id}>
+          <div className="experience-line-item" key={experience.id}>
             <DisplayedExperience experience={experience} />
-            <button onClick={() => this.toggleEditDisplay(experience)}>Edit</button>
+            <button className="experience-edit-button" onClick={() => this.toggleEditDisplay(experience)}>Edit</button>
           </div>
         )
       } else {
         return (
-          <div key={experience.id}>
+          <div className="experience-edit" key={experience.id}>
             <form onSubmit={(e) => this.editExperience(e, experience)}>
               <input
                 id="position"
@@ -163,48 +164,52 @@ class Experience extends Component {
       return (
         <div>
           {experienceList}
-          <form onSubmit={this.addExperience}>
-            <input
-              id="position"
-              type="text"
-              placeholder="Position"
-              value={this.state.position}
-              onChange={(e) => this.handlePositionChange(e, this.state.experiences.slice(-1)[0])}
-              required
-            />
-            <input
-              id="employer"
-              type="text"
-              placeholder="Employer"
-              value={this.state.employer}
-              onChange={(e) => this.handleEmployerChange(e, this.state.experiences.slice(-1)[0])}
-              required
-            />
-            <input
-              id="dates"
-              type="text"
-              placeholder="Dates"
-              value={this.state.dates}
-              onChange={(e) => this.handleDatesChange(e, this.state.experiences.slice(-1)[0])}
-              required
-            />
-            <input
-              id="duties"
-              type="textarea"
-              placeholder="Duties"
-              value={this.state.duties}
-              onChange={(e) => this.handleDutiesChange(e, this.state.experiences.slice(-1)[0])}
-              required
-            />
-            <button type="submit">Submit Experience</button>
-          </form>
+          <div className="experience-add">
+            <form onSubmit={this.addExperience}>
+              <input
+                id="position"
+                type="text"
+                placeholder="Position"
+                value={this.state.position}
+                onChange={(e) => this.handlePositionChange(e, this.state.experiences.slice(-1)[0])}
+                required
+              />
+              <input
+                id="employer"
+                type="text"
+                placeholder="Employer"
+                value={this.state.employer}
+                onChange={(e) => this.handleEmployerChange(e, this.state.experiences.slice(-1)[0])}
+                required
+              />
+              <input
+                id="dates"
+                type="text"
+                placeholder="Dates"
+                value={this.state.dates}
+                onChange={(e) => this.handleDatesChange(e, this.state.experiences.slice(-1)[0])}
+                required
+              />
+              <input
+                id="duties"
+                type="textarea"
+                placeholder="Duties"
+                value={this.state.duties}
+                onChange={(e) => this.handleDutiesChange(e, this.state.experiences.slice(-1)[0])}
+                required
+              />
+              <button type="submit">Submit Experience</button>
+            </form>
+          </div>
         </div>
       )
     } else {
       return (
-        <div>
+        <div className="experience-with-add-button">
           {experienceList}
-          <button onClick={this.toggleAddDisplay}>Add Experience</button>
+          <div>
+            <button className="experience-add-button" onClick={this.toggleAddDisplay}>Add Experience</button>
+          </div>
         </div>
       )
     }

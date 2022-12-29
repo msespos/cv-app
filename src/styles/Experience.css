@@ -1,0 +1,30 @@
+.experience-add, .experience-edit {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.experience-display, .experience-line-item {
+  font-size: xx-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.experience-display {
+  flex-direction: column;
+}
+
+.experience-edit-button, .experience-add-button {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  margin: 10px 30px;
+}
+
+.experience-with-add-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+

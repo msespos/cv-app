@@ -4,10 +4,10 @@ class DisplayedExperience extends Component {
   render() {
     return (
       <div key={this.props.experience.id}>
-        {"Position: " + this.props.experience.position +
-         "; Employer: " + this.props.experience.employer +
-         "; Dates: " + this.props.experience.dates +
-         "; Duties: " + this.props.experience.duties}
+        <em>Position:</em> {this.props.experience.position}
+        <em> --- Employer:</em> {this.props.experience.employer}
+        <em> --- Dates:</em> {this.props.experience.dates}
+        <em> --- Duties:</em> {this.props.experience.duties}
       </div>    
     )
   }
