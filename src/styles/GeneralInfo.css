@@ -6,7 +6,7 @@
 
 * {
   background-color: rgb(26, 6, 23);
-  color: rgb(143, 138, 122);
+  color: rgb(174, 168, 147);
 }
 
 .form {
@@ -17,16 +17,22 @@ input, button {
   padding: 20px 10px;
   line-height: 28px;
   font-size: 18px;
-  border: 2px solid #b9cfd4ff;
+  border: 2px solid rgb(146, 172, 178);
 }
 
 button {
   background-color: #0a014fff;
 }
 
+.tiny-edit-button-container {
+  display: flex;
+  justify-content: end;
+}
+
 .tiny-edit-button {
   padding: 10px;
   line-height: 5px;
+  height: 30px;
 }
 
 .title-edit {
@@ -35,13 +41,10 @@ button {
   padding: 20px;
 }
 
-.first-name-and-tiny-edit-button {
-  display: flex;
-}
-
 .title-display {
   font-size: xx-large;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 40px;
 }

@@ -84,15 +84,17 @@ class GeneralInfo extends Component {
       )
     } else {
       return (
-        <div class="title-display">
-          <div class="first-name-and-tiny-edit-button">
-            <div class="title-display">
-              {this.state.firstName + " " + this.state.lastName}
-            </div>
+        <div>
+          <div class="tiny-edit-button-container">
             <button class="tiny-edit-button" onClick={this.toggleDisplay}>Edit Info</button>
           </div>
           <div class="title-display">
-            {this.state.email}
+            <div>
+              {this.state.firstName + " " + this.state.lastName}
+            </div>
+            <div>
+              {this.state.email}
+            </div>
           </div>
         </div>
       )
