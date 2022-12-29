@@ -7,8 +7,11 @@ class App extends Component {
   render() {
     return (
       <div>
+        <div style={{fontSize: "xx-large", textAlign: "center"}}>General Info</div>
         <GeneralInfo />
+        <div style={{fontSize: "xx-large", textAlign: "center"}}>Education</div>
         <Education />
+        <div style={{fontSize: "xx-large", textAlign: "center"}}>Experience</div>
         <Experience />
       </div>
     );
