@@ -147,33 +147,33 @@ class Education extends Component {
         <div>
           {educationList}
           <div className="education-add">
-          <form onSubmit={this.addEducation}>
-            <input
-              id="school"
-              type="text"
-              placeholder="School"
-              value={this.state.school}
-              onChange={(e) => this.handleSchoolChange(e, this.state.educations.slice(-1)[0])}
-              required
-            />
-            <input
-              id="major"
-              type="text"
-              placeholder="Major"
-              value={this.state.major}
-              onChange={(e) => this.handleMajorChange(e, this.state.educations.slice(-1)[0])}
-              required
-            />
-            <input
-              id="degree"
-              type="text"
-              placeholder="degree"
-              value={this.state.degree}
-              onChange={(e) => this.handleDegreeChange(e, this.state.educations.slice(-1)[0])}
-              required
-            />
-            <button type="submit">Submit Education</button>
-          </form>
+            <form onSubmit={this.addEducation}>
+              <input
+                id="school"
+                type="text"
+                placeholder="School"
+                value={this.state.school}
+                onChange={(e) => this.handleSchoolChange(e, this.state.educations.slice(-1)[0])}
+                required
+              />
+              <input
+                id="major"
+                type="text"
+                placeholder="Major"
+                value={this.state.major}
+                onChange={(e) => this.handleMajorChange(e, this.state.educations.slice(-1)[0])}
+                required
+              />
+              <input
+                id="degree"
+                type="text"
+                placeholder="degree"
+                value={this.state.degree}
+                onChange={(e) => this.handleDegreeChange(e, this.state.educations.slice(-1)[0])}
+                required
+              />
+              <button type="submit">Submit Education</button>
+            </form>
           </div>
         </div>
       )
