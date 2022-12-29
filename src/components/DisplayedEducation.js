@@ -7,7 +7,7 @@ class DisplayedEducation extends Component {
         <em>School:</em> {this.props.education.school}
         <em> --- Major:</em> {this.props.education.major}
         <em> --- Degree:</em> {this.props.education.degree}
-      </div>    
+      </div>
     )
   }
 }
