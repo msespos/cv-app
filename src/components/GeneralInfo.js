@@ -52,8 +52,8 @@ class GeneralInfo extends Component {
   render() {
     if (this.state.displayMode === "edit") {
       return (
-        <div class="title-edit">
-          <form class="form" onSubmit={this.toggleDisplay}>
+        <div className="title-edit">
+          <form onSubmit={this.toggleDisplay}>
             <input
               id="firstName"
               type="text"
@@ -85,10 +85,10 @@ class GeneralInfo extends Component {
     } else {
       return (
         <div>
-          <div class="tiny-edit-button-container">
-            <button class="tiny-edit-button" onClick={this.toggleDisplay}>Edit Info</button>
+          <div className="tiny-edit-button-container">
+            <button className="tiny-edit-button" onClick={this.toggleDisplay}>Edit Info</button>
           </div>
-          <div class="title-display">
+          <div className="title-display">
             <div>
               {this.state.firstName + " " + this.state.lastName}
             </div>

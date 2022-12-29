@@ -9,7 +9,7 @@
   color: rgb(174, 168, 147);
 }
 
-.form {
+form {
   border: 5px solid #6969b3ff;
 }
 
@@ -21,6 +21,7 @@ input, button {
 }
 
 button {
+  align-self: flex-start;
   background-color: #0a014fff;
 }
 
