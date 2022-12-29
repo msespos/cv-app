@@ -4,6 +4,10 @@
 --columbia-blue: #b9cfd4ff;
 --midnight-blue: #0a014fff; */
 
+body {
+  margin-top: 42px
+}
+
 * {
   background-color: rgb(26, 6, 23);
   color: rgb(174, 168, 147);
