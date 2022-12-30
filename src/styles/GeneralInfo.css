@@ -31,7 +31,7 @@ button {
 
 .tiny-edit-button-container {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .tiny-edit-button {
