@@ -100,7 +100,7 @@ class Education extends Component {
   render() {
     const educationList = this.state.educations.map((education) => {
       if (education.editDisplayMode === "hidden") {
-        return;
+        return <div></div>;
       } else if (education.editDisplayMode === "display") {
         return (
           <div className="education-line-item" key={education.id}>

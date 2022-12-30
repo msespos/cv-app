@@ -110,7 +110,7 @@ class Experience extends Component {
   render() {
     const experienceList = this.state.experiences.map((experience) => {
       if (experience.editDisplayMode === "hidden") {
-        return;
+        return <div></div>;
       } else if (experience.editDisplayMode === "display") {
         return (
           <div className="experience-line-item" key={experience.id}>
