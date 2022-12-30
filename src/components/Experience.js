@@ -108,7 +108,7 @@ class Experience extends Component {
   }
 
   render() {
-    const experienceList = this.state.experiences.map((experience) => {
+    const experienceList = this.state.experiences.forEach((experience) => {
       if (experience.editDisplayMode === "hidden") {
         return;
       } else if (experience.editDisplayMode === "display") {
