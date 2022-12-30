@@ -6,7 +6,7 @@ import Experience from './components/Experience';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div style={{maxWidth: "60ch", margin: "0 auto"}}>
         <div style={{fontSize: "xx-large", textAlign: "center"}}>General Info</div>
         <GeneralInfo />
         <div style={{fontSize: "xx-large", textAlign: "center"}}>Education</div>
