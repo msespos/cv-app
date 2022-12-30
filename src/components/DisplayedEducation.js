@@ -4,9 +4,7 @@ class DisplayedEducation extends Component {
   render() {
     return (
       <div key={this.props.education.id}>
-        <em>School:</em> {this.props.education.school}
-        <em> --- Major:</em> {this.props.education.major}
-        <em> --- Degree:</em> {this.props.education.degree}
+        {this.props.education.school} &#x2022; {this.props.education.major} &#x2022; {this.props.education.degree}
       </div>
     )
   }
