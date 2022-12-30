@@ -98,7 +98,7 @@ class Education extends Component {
   }
 
   render() {
-    const educationList = this.state.educations.forEach((education) => {
+    const educationList = this.state.educations.map((education) => {
       if (education.editDisplayMode === "hidden") {
         return;
       } else if (education.editDisplayMode === "display") {
