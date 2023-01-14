@@ -18,26 +18,31 @@ form {
 }
 
 input, button {
+  width: 95%;
   padding: 20px 10px;
-  line-height: 28px;
+  line-height: 20px;
   font-size: 18px;
   border: 2px solid rgb(146, 172, 178);
 }
 
 button {
+  width: 100%;
   align-self: flex-start;
-  background-color: #0a014fff;
+  background-color: rgb(62, 43, 212);
 }
 
 .tiny-edit-button-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .tiny-edit-button {
+  border: none;
   padding: 10px;
   line-height: 5px;
   height: 30px;
+  width: 100px;
+  margin: 15px 0px 40px;
 }
 
 .title-edit {
@@ -51,5 +56,5 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px;
+  padding: 40px 40px 0px 40px;
 }

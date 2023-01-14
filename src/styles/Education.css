@@ -5,7 +5,7 @@
 }
 
 .education-display, .education-line-item {
-  font-size: xx-large;
+  font-size: large;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,11 +15,23 @@
   flex-direction: column;
 }
 
+.education-line-item {
+  display: flex;
+  justify-content: space-between;
+}
+
 .education-edit-button, .education-add-button {
   display: inline-flex;
   align-items: center;
   height: 20px;
-  margin: 10px 30px;
+  margin: 10px;
+  width: 50px;
+  border: none;
+}
+
+.education-add-button {
+  width: 140px;
+  margin-bottom: 40px;
 }
 
 .education-with-add-button {

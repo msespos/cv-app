@@ -85,9 +85,6 @@ class GeneralInfo extends Component {
     } else {
       return (
         <div>
-          <div className="tiny-edit-button-container">
-            <button className="tiny-edit-button" onClick={this.toggleDisplay}>Edit Info</button>
-          </div>
           <div className="title-display">
             <div>
               {this.state.firstName + " " + this.state.lastName}
@@ -95,6 +92,9 @@ class GeneralInfo extends Component {
             <div>
               {this.state.email}
             </div>
+          </div>
+          <div className="tiny-edit-button-container">
+            <button className="tiny-edit-button" onClick={this.toggleDisplay}>Edit Info</button>
           </div>
         </div>
       )
