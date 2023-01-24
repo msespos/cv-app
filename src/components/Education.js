@@ -3,7 +3,6 @@ import DisplayedEducation from './DisplayedEducation';
 import uniqid from 'uniqid';
 import '../styles/Education.css';
 
-
 const Education = () => {
   const [educations, setEducations] = useState([
     {
@@ -15,13 +14,6 @@ const Education = () => {
     }
   ]);
   const [addDisplayMode, setAddDisplayMode] = useState("add");
-  //   this.toggleAddDisplay = this.toggleAddDisplay.bind(this);
-  //   this.toggleEditDisplay = this.toggleEditDisplay.bind(this);
-  //   this.addEducation = this.addEducation.bind(this);
-  //   this.editEducation = this.editEducation.bind(this);
-  //   this.handleSchoolChange = this.handleSchoolChange.bind(this);
-  //   this.handleMajorChange = this.handleMajorChange.bind(this);
-  //   this.handleDegreeChange = this.handleDegreeChange.bind(this);
 
   const toggleEditDisplay = (education) => {
     if (education.editDisplayMode === "display") {       
