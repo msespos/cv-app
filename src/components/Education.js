@@ -1,58 +1,47 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import DisplayedEducation from './DisplayedEducation';
 import uniqid from 'uniqid';
 import '../styles/Education.css';
 
-class Education extends Component {
-  constructor() {
-    super();
 
-    this.state = {
-      educations: [
-        {
-          school: "",
-          major: "",
-          degree: "",
-          id: uniqid(),
-          editDisplayMode: "hidden",
-        }
-      ],
-      addDisplayMode: "add",
+const Education = () => {
+  const [educations, setEducations] = useState([
+    {
+      school: "",
+      major: "",
+      degree: "",
+      id: uniqid(),
+      editDisplayMode: "hidden",
     }
+  ]);
+  const [addDisplayMode, setAddDisplayMode] = useState("add");
+  //   this.toggleAddDisplay = this.toggleAddDisplay.bind(this);
+  //   this.toggleEditDisplay = this.toggleEditDisplay.bind(this);
+  //   this.addEducation = this.addEducation.bind(this);
+  //   this.editEducation = this.editEducation.bind(this);
+  //   this.handleSchoolChange = this.handleSchoolChange.bind(this);
+  //   this.handleMajorChange = this.handleMajorChange.bind(this);
+  //   this.handleDegreeChange = this.handleDegreeChange.bind(this);
 
-    this.toggleAddDisplay = this.toggleAddDisplay.bind(this);
-    this.toggleEditDisplay = this.toggleEditDisplay.bind(this);
-    this.addEducation = this.addEducation.bind(this);
-    this.editEducation = this.editEducation.bind(this);
-    this.handleSchoolChange = this.handleSchoolChange.bind(this);
-    this.handleMajorChange = this.handleMajorChange.bind(this);
-    this.handleDegreeChange = this.handleDegreeChange.bind(this);
-  }
-
-  toggleAddDisplay() {
-    if (this.state.addDisplayMode === "display") {
-      this.setState({
-        addDisplayMode: "add"
-      })
-    } else {
-      this.setState({
-        addDisplayMode: "display"
-      })
-    }
-  }
-
-  toggleEditDisplay(education) {
-    if (education.editDisplayMode === "display") {
+  const toggleEditDisplay = (education) => {
+    if (education.editDisplayMode === "display") {       
       education.editDisplayMode = "edit";
     } else {
       education.editDisplayMode = "display";
     }
-    this.setState({
-      educations: this.state.educations
-    });
+    setEducations([...educations])
+    console.log("educations", educations)
+  }
+  
+  const toggleAddDisplay = () => {
+    if (addDisplayMode === "display") {
+      setAddDisplayMode("add");
+    } else {
+      setAddDisplayMode("display");
+    }
   }
 
-  addEducation(e) {
+  const addEducation = (e) => {
     e.preventDefault();
     let newBlank = {
       school: "",
@@ -61,133 +50,122 @@ class Education extends Component {
       id: uniqid(),
       editDisplayMode: "hidden",
     }
-    this.state.educations.slice(-1)[0].editDisplayMode = "display";
-    this.setState({
-      educations: this.state.educations.concat(newBlank),
-    });
-    this.toggleAddDisplay();
+    educations.slice(-1)[0].editDisplayMode = "display";
+    setEducations(educations.concat(newBlank));
+    toggleAddDisplay();
   }
 
-  editEducation(e, education) {
+  const editEducation = (e, education) => {
     e.preventDefault();
-    this.setState({
-      educations: this.state.educations,
-    });
-    this.toggleEditDisplay(education);
+    setEducations(educations);
+    toggleEditDisplay(education);
   }
 
-  handleSchoolChange(e, education) {
+  const handleSchoolChange = (e, education) => {
     education.school = e.target.value;
-    this.setState({
-      educations: this.state.educations
-    });
+    setEducations([...educations]);
   }
 
-  handleMajorChange(e, education) {
+  const handleMajorChange = (e, education) => {
     education.major = e.target.value;
-    this.setState({
-      educations: this.state.educations
-    });
+    setEducations([...educations]);
   }
 
-  handleDegreeChange(e, education) {
+  const handleDegreeChange = (e, education) => {
     education.degree = e.target.value;
-    this.setState({
-      educations: this.state.educations
-    });
+    setEducations([...educations]);
   }
 
-  render() {
-    const educationList = this.state.educations.map((education) => {
-      if (education.editDisplayMode === "hidden") {
-        return <div></div>;
-      } else if (education.editDisplayMode === "display") {
-        return (
-          <div className="education-line-item" key={education.id}>
-            <DisplayedEducation education={education} />
-            <button className="education-edit-button" onClick={() => this.toggleEditDisplay(education)}>Edit</button>
-          </div>
-        )
-      } else {
-        return (
-          <div className="education-edit" key={education.id}>
-            <form onSubmit={(e) => this.editEducation(e, education)}>
-              <input
-                id="school"
-                type="text"
-                placeholder="School"
-                value={education.school}
-                onChange={(e) => this.handleSchoolChange(e, education)}
-                required
-              />
-              <input
-                id="major"
-                type="text"
-                placeholder="Major"
-                value={education.major}
-                onChange={(e) => this.handleMajorChange(e, education)}
-                required
-              />
-              <input
-                id="degree"
-                type="text"
-                placeholder="degree"
-                value={education.degree}
-                onChange={(e) => this.handleDegreeChange(e, education)}
-                required
-              />
-              <button type="submit">Submit Edit</button>
-            </form>
-          </div>
-        )
-      }
-    })
-    if (this.state.addDisplayMode === "add") {
+  const educationList = educations.map((education) => {
+    if (education.editDisplayMode === "hidden") {
+      return (null);
+    } else if (education.editDisplayMode === "display") {
       return (
-        <div>
-          {educationList}
-          <div className="education-add">
-            <form onSubmit={this.addEducation}>
-              <input
-                id="school"
-                type="text"
-                placeholder="School"
-                value={this.state.school}
-                onChange={(e) => this.handleSchoolChange(e, this.state.educations.slice(-1)[0])}
-                required
-              />
-              <input
-                id="major"
-                type="text"
-                placeholder="Major"
-                value={this.state.major}
-                onChange={(e) => this.handleMajorChange(e, this.state.educations.slice(-1)[0])}
-                required
-              />
-              <input
-                id="degree"
-                type="text"
-                placeholder="degree"
-                value={this.state.degree}
-                onChange={(e) => this.handleDegreeChange(e, this.state.educations.slice(-1)[0])}
-                required
-              />
-              <button type="submit">Submit Education</button>
-            </form>
-          </div>
+        <div className="education-line-item" key={education.id}>
+          <DisplayedEducation education={education} />
+          <button className="education-edit-button" onClick={() => toggleEditDisplay(education)}>Edit</button>
         </div>
       )
     } else {
       return (
-        <div className="education-with-add-button">
-          {educationList}
-          <div>
-            <button className="education-add-button" onClick={this.toggleAddDisplay}>Add Education</button>
-          </div>
+        <div className="education-edit" key={education.id}>
+          <form onSubmit={(e) => editEducation(e, education)}>
+            <input
+              id="school"
+              type="text"
+              placeholder="School"
+              value={education.school}
+              onChange={(e) => handleSchoolChange(e, education)}
+              required
+            />
+            <input
+              id="major"
+              type="text"
+              placeholder="Major"
+              value={education.major}
+              onChange={(e) => handleMajorChange(e, education)}
+              required
+            />
+            <input
+              id="degree"
+              type="text"
+              placeholder="degree"
+              value={education.degree}
+              onChange={(e) => handleDegreeChange(e, education)}
+              required
+            />
+            <button type="submit">Submit Edit</button>
+          </form>
         </div>
       )
     }
+  })
+  if (addDisplayMode === "add") {
+    return (
+      <div>
+        {educationList}
+        <div className="education-add">
+          <form onSubmit={addEducation}>
+            <input
+              id="school"
+              type="text"
+              placeholder="School"
+              value={educations.school}
+              onChange={(e) => handleSchoolChange(e, educations.slice(-1)[0])}
+              required
+            />
+            <input
+              id="major"
+              type="text"
+              placeholder="Major"
+              value={educations.major}
+              onChange={(e) => handleMajorChange(e, educations.slice(-1)[0])}
+              required
+            />
+            <input
+              id="degree"
+              type="text"
+              placeholder="degree"
+              value={educations.degree}
+              onChange={(e) => handleDegreeChange(e, educations.slice(-1)[0])}
+              required
+            />
+            <button type="submit">Submit Education</button>
+          </form>
+        </div>
+      </div>
+    )
+  } else {
+    return (
+      <div className="education-with-add-button">
+        {educationList}
+        <div>
+          <button className="education-add-button" onClick={toggleAddDisplay}>Add Education</button>
+        </div>
+      </div>
+    )
   }
 }
+
 
 export default Education;

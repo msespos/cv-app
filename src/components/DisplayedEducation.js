@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class DisplayedEducation extends Component {
-  render() {
-    return (
-      <div key={this.props.education.id}>
-        {this.props.education.school} &#x2022; {this.props.education.major} &#x2022; {this.props.education.degree}
-      </div>
-    )
-  }
+const DisplayedEducation = (props) => {
+  return (
+    <div>
+      {props.education.school} &#x2022; {props.education.major} &#x2022; {props.education.degree}
+    </div>
+  )
 }
 
 export default DisplayedEducation
