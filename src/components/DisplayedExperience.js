@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class DisplayedExperience extends Component {
-  render() {
-    return (
-      <div key={this.props.experience.id}>
-        {this.props.experience.position} &#x2022; {this.props.experience.employer}<br></br>
-        {this.props.experience.duties} &#x2022; {this.props.experience.dates}
-      </div>    
-    )
-  }
+const DisplayedExperience = (props) => {
+  return (
+    <div>
+      {props.experience.position} &#x2022; {props.experience.employer}<br></br>
+      {props.experience.duties} &#x2022; {props.experience.dates}
+    </div>
+  )
 }
 
 export default DisplayedExperience
