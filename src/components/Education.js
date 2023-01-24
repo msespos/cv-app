@@ -22,7 +22,6 @@ const Education = () => {
       education.editDisplayMode = "display";
     }
     setEducations([...educations])
-    console.log("educations", educations)
   }
   
   const toggleAddDisplay = () => {
